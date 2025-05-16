@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Kanocycle 的博客</title>
@@ -9,7 +9,7 @@
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\[', '\]']]
       }
     };
   </script>
@@ -24,7 +24,7 @@
         name: 'Kanocycle 的博客',
         doneEach: function () {
           console.log('Docsify doneEach 触发');
-          if (window.MathJax) {
+          if (window.MathJax && window.MathJax.typesetPromise) {
             window.MathJax.typesetPromise();
           }
         }
@@ -42,5 +42,6 @@
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" onload="startDocsify()"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-latex@0"></script>
 </body>
 </html>
