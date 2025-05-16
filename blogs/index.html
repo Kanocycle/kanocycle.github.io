@@ -1,32 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>博客 | Kanocycle</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
-</head>
-<body>
-  <div id="app">加载中…</div>
-
+  <meta charset="UTF-8" />
+  <title>Kanocycle 的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css" />
   <script>
-    window.$docsify = {
-      name: '我的博客',
-      loadSidebar: true,
-      subMaxLevel: 2,
-      loadNavbar: true,
-      relativePath: true,
-      markdown: {
-        renderer: {
-          code: function (code, lang) {
-            return lang === 'math' ? `\\[${code}\\]` : this.origin.code.apply(this, arguments);
-          }
-        }
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
       }
     };
   </script>
+</head>
+<body>
+  <div id="app"></div>
 
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  <script>
+    function startDocsify() {
+      console.log('MathJax 加载完毕，开始启动 Docsify');
+      window.$docsify = {
+        name: 'Kanocycle 的博客',
+        doneEach: function () {
+          console.log('Docsify doneEach 触发');
+          if (window.MathJax) {
+            window.MathJax.typesetPromise();
+          }
+        }
+      };
+      var docsifyScript = document.createElement('script');
+      docsifyScript.src = 'https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js';
+      docsifyScript.onload = function () {
+        console.log('Docsify 脚本加载完成');
+      };
+      docsifyScript.onerror = function () {
+        console.error('Docsify 脚本加载失败');
+      };
+      document.body.appendChild(docsifyScript);
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" onload="startDocsify()"></script>
 </body>
 </html>
