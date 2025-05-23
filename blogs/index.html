@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <p>
-        <a href="../index.html">Homepage</a> |
-        <a href="../blog.html">Blogs</a>
-      </p>
+   <style>
+    .hero-banner {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/bg.png');
+      background-size: cover;
+      background-position: center;
+      padding: 80px 20px;
+      text-align: center;
+      color: white;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .markdown-section {
+      background-color: rgba(255,255,255,0.9);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .markdown-section h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+    .blog-background {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  transition: background-image 0.5s ease;
+}
+  </style>
   <meta charset="UTF-8" />
   <title>Kanocycle 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +47,10 @@
   </script>
 </head>
 <body>
-
+  <div>
+        <a href="../index.html">Homepage</a> |
+        <a href="../blog.html">Blogs</a>
+  </div>
   <div id="app"></div>
 
   <script>
@@ -36,12 +67,6 @@
       };
       var docsifyScript = document.createElement('script');
       docsifyScript.src = 'https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js';
-      docsifyScript.onload = function () {
-        console.log('Docsify 脚本加载完成');
-      };
-      docsifyScript.onerror = function () {
-        console.error('Docsify 脚本加载失败');
-      };
       document.body.appendChild(docsifyScript);
     }
   </script>

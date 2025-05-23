@@ -1,3 +1,21 @@
+<style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+      color: #333;
+      text-align: center;
+      background-image: url('../assets/blog-backgrounds/stellar1.png');
+    background-size: cover;       /* 让背景图片铺满全屏 */
+    background-position: center;  /* 图片居中 */
+    background-repeat: no-repeat; /* 不重复 */
+    background-attachment: fixed; /* 滚动时背景固定 */
+    }
+</style>
+<body>
+
 # 宝宝椅恒星物理
 
 写这篇md主要是想总结一下这学期上的Stellar Astrophysics，由于Stefan Jordan老爷爷上课基本全靠念稿实在撑不住只能靠自己学了……
@@ -52,4 +70,4 @@ $$\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\Phi}{\partial 
 
 
 ## 未完待续
-
+</body>
