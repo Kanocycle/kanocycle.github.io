@@ -14,10 +14,10 @@
       color: #333;
       text-align: center;
       background-image: url('assets/bg.png');
-    background-size: cover;       /* 让背景图片铺满全屏 */
-    background-position: center;  /* 图片居中 */
-    background-repeat: no-repeat; /* 不重复 */
-    background-attachment: fixed; /* 滚动时背景固定 */
+      background-size: cover;       /* 让背景图片铺满全屏 */
+      background-position: center;  /* 图片居中 */
+      background-repeat: no-repeat; /* 不重复 */
+      background-attachment: fixed; /* 滚动时背景固定 */
     }
 
     .avatar {
@@ -59,14 +59,25 @@
     <img src="assets/profile.jpg" alt="我的头像" class="avatar">
     <h1>Kanocycle</h1>
     <h2>=Zijun Wang(汪子骏)</h2>
-    <p class="subtitle">Astrophysics master student · basically otaku </p>
+    <p class="subtitle">Astrophysics Master student in Heidelberg University </p>
   </div>
 
   <div class="section">
     <h2>About me</h2>
-    <p>master student in Heidelberg University/中文,English,日本語/homepage constructing </p>
-  </div>
+    <p>Hi! Nice to see you here. I am Zijun Wang(汪子骏)(maybe I'll share a link here someday to explain the pronunciation). I've been studying at Heidelberg University in Germany since April 2025. As for now, my research interests are: Stellar and Galactical Dynamics, Star Clusters(SCs) and Star formation theory. </p>
+    <p>As you can see, I'm keen on ACG cultures. Maybe I'll make a special page to show my ACG hobbies, but knowing that my profile image is a girl called 'Chihaya Kisaragi(如月千早)' from The Idolm@ster is enough for now. Pls write sth below if you want, I'm happy to check them.</p>
+    <p>I can speak Mandarin, English and simple Japanese. I've just started learning German since I'm going to leave here for a while. Feel free to contact me if you need an English guide for Heidelberg(or maybe in Japanese also OK).</p>
+    <p>
+    See my resume(PDF):
+  <a href="assets/resume_wzj_EN1_2.pdf" target="_blank">resume</a>
+</p>
 
+  </div>
+    <div class="section">
+    <h2>Homework Assignment</h2>
+    <a href="assets/Homework06_ZijunWang.zip" target="_blank">Homework06_ZijunWang.zip</a>
+    <div id="giscus"></div>
+  </div>
   <div class="section">
     <h2>Contact me</h2>
     <p>Email: <a href="mailto:zijun.wang@stud.uni-heidelberg.de">zijun.wang@stud.uni-heidelberg.de</a></p>
@@ -76,9 +87,9 @@
   </div>
   <div class="section">
   <h2>My Video</h2>
-  <iframe width="560" height="315" src="//player.bilibili.com/player.html?isOutside=true&aid=114373049716825&bvid=BV1MYLMzoEaP&cid=29542845301&p=1"
+  <iframe width="560" height="315" src="//player.bilibili.com/player.html?isOutside=true&aid=114373049716825&bvid=BV1MYLMzoEaP&cid=29542845301&p=1&autoplay=0"
     title="YouTube video player" frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <div class="section">
@@ -100,5 +111,69 @@
         crossorigin="anonymous"
         async>
 </script>
+<button onclick="toggleBGM()">🎵 播放/暂停 BGM</button>
+<script>
+  function toggleBGM() {
+    if (bgm.paused) {
+      bgm.play();
+    } else {
+      bgm.pause();
+    }
+  }
+</script>
+
+<audio id="bgm"></audio>
+
+<button id="play-btn">▶️ 播放音乐 / Play Music</button>
+
+<script>
+  const playlist = [
+    'assets/music/21. i (Piano Instrumental Version).mp3',
+    'assets/music/20. THE IDOLM@STER(BGM Version).mp3',
+    'assets/music/07. GO MY WAY!! (BGM VERSION).mp3'
+  ];
+
+  function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
+  let shuffledList = shuffle([...playlist]);
+  let currentTrack = 0;
+  const bgm = document.getElementById('bgm');
+  const playBtn = document.getElementById('play-btn');
+  let hasStarted = false;
+
+  function playTrack(index) {
+    bgm.src = shuffledList[index];
+    bgm.play().catch(e => console.warn("Autoplay blocked:", e));
+  }
+
+  // 切换音乐逻辑 / Handle track end
+  bgm.addEventListener('ended', () => {
+    currentTrack++;
+    if (currentTrack >= shuffledList.length) {
+      shuffledList = shuffle([...playlist]);
+      currentTrack = 0;
+    }
+    playTrack(currentTrack);
+  });
+
+  // 按钮控制播放与暂停 / Button controls play/pause
+  playBtn.addEventListener('click', () => {
+    if (!hasStarted) {
+      playTrack(currentTrack);
+      playBtn.textContent = '⏸️ 暂停音乐 / Pause Music';
+      hasStarted = true;
+    } else if (bgm.paused) {
+      bgm.play();
+      playBtn.textContent = '⏸️ 暂停音乐 / Pause Music';
+    } else {
+      bgm.pause();
+      playBtn.textContent = '▶️ 播放音乐 / Play Music';
+    }
+  });
+</script>
+
+
 </body>
 </html>
