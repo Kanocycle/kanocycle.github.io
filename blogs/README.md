@@ -24,3 +24,5 @@
 - [数学公式测试](post1.md)
 
 ## [新坑：宝宝椅恒星物理1](stellar1.md)
+
+## [新坑：宝宝椅恒星物理_小抄](stellar_cheatsheet.md)
